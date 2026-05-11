@@ -1,0 +1,50 @@
+[
+  {
+    "query": "子用 skill を使用してください。workspace: /agent_work/workspaces/active/2026-04-24-sample/、plan: plan.md、対象 Todo: T3。plan.md は更新せず、結果だけ親へ報告してください。",
+    "should_trigger": true
+  },
+  {
+    "query": "親から T4〜T5 を任されました。許可成果物は notes/T4.md と notes/T5.md だけです。executor/reporter として進めてください。",
+    "should_trigger": true
+  },
+  {
+    "query": "並行委任の一部です。あなたは docs/a.md だけ編集可、別の子が docs/b.md を触ります。同一ファイル衝突に注意して報告してください。",
+    "should_trigger": true
+  },
+  {
+    "query": "この plan 抜粋に従って T7 の調査だけお願いします。Memory Context は以下の 2 点だけ使い、memory 詳細調査は親が指定した範囲に限ってください。",
+    "should_trigger": true
+  },
+  {
+    "query": "workspace の archive 参照を読み取り専用で確認し、委任された T2 のメモだけ作ってください。plan の更新案は報告に留めて。",
+    "should_trigger": true
+  },
+  {
+    "query": "完了条件が満たせなければ blocked として、不足情報・再開条件・親に決めてほしいことを返してください。plan.md は触らないで。",
+    "should_trigger": true
+  },
+  {
+    "query": "親入力が短いですが、workspace-plan-executor の共通ルールに従って T1 の成果物確認をしてください。",
+    "should_trigger": true
+  },
+  {
+    "query": "plan.md の T6 を done に変更し、workspace を archive に移動して完了処理までお願いします。",
+    "should_trigger": false
+  },
+  {
+    "query": "新規 workspace を作って全体計画と Todo 分解、子への委任入力まで親として設計してください。",
+    "should_trigger": false
+  },
+  {
+    "query": "この会話で決めた内容を memory topic に保存してください。rules.md も更新が必要か見てください。",
+    "should_trigger": false
+  },
+  {
+    "query": "OpenCode の ToDo inbox に、AWS 学習を 1 件追加して今日のタスクにしてください。",
+    "should_trigger": false
+  },
+  {
+    "query": "React の useEffect が無限ループする理由を一般論として説明してください。workspace や plan は使わなくてよいです。",
+    "should_trigger": false
+  }
+]

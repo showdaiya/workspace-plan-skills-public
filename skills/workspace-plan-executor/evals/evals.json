@@ -1,0 +1,78 @@
+{
+  "skill_name": "workspace-plan-executor",
+  "evals": [
+    {
+      "id": "executor-no-plan-update",
+      "prompt": "子用 skill を使ってください。workspace: /agent_work/workspaces/active/2026-04-24-sample/。plan: /agent_work/workspaces/active/2026-04-24-sample/plan.md。対象 Todo: T2。plan 抜粋に従って notes/T2-review.md だけを更新し、完了したら親が plan に反映すべき状態判断材料を報告してください。",
+      "expected_output": "委任された T2 と許可成果物だけを扱い、plan.md を直接更新せず、最終報告で T2 の状態判断材料を返す。",
+      "files": [],
+      "assertions": [
+        "plan.md を直接更新しない",
+        "委任範囲外 Todo を進めない",
+        "許可された成果物だけを作成・更新する",
+        "親が plan に反映すべき状態判断材料を報告する"
+      ]
+    },
+    {
+      "id": "executor-use-memory-context",
+      "prompt": "子用 skill を使用してください。対象 Todo は T5 の調査メモ作成です。Memory Context: ユーザーは短い委任入力を好み、リポジトリ状況は過去情報なので現在確認を優先する。memory topic は更新しない。必要なら /agent_work/workspaces/active/2026-04-24-sample/plan.md を読んでください。",
+      "expected_output": "親から渡された Memory Context 要約を使い、memory 詳細調査を自分で広げない。過去のリポジトリ状況より現在のローカル確認を優先し、memory 更新候補は報告に留める。追加確認が親から指定されている場合は memory-ops skill の手順に従う。",
+      "files": [],
+      "assertions": [
+        "親の Memory Context 要約を使用する",
+        "memory 詳細調査を自分で広げない",
+        "過去情報より現在のローカル確認を優先する",
+        "memory topic を作成・更新しない",
+        "Memory Context の扱いを最終報告に含める"
+      ]
+    },
+    {
+      "id": "executor-blocked-report",
+      "prompt": "子用 skill を使って、T7 の実装確認をお願いします。ただしテストコマンドが未定で、完了条件を満たせない場合は blocked として返してください。plan.md や workspace 状態は更新しないでください。",
+      "expected_output": "完了条件を満たせない場合は無理に進めず、blocked 理由、不足情報、再開条件、親/ユーザー判断事項、実施済み/未完了、未検証、次アクションを報告する。",
+      "files": [],
+      "assertions": [
+        "完了条件を満たせない場合に blocked と判断する",
+        "blocked 理由・不足情報・再開条件・判断依頼を含める",
+        "実施済み/未完了と未検証範囲を含める",
+        "workspace 状態移動や plan.md 更新をしない"
+      ]
+    },
+    {
+      "id": "executor-parallel-conflict",
+      "prompt": "並行委任の一部です。あなたは T3 担当で docs/review.md を編集予定ですが、別の子も同じ docs/review.md を触る可能性があります。衝突しそうなら編集せず親へ確認してください。",
+      "expected_output": "同一ファイル同時編集の衝突可能性を検知し、編集を止めて親へ確認を返す。触った/触らなかったファイルと判断理由を報告する。",
+      "files": [],
+      "assertions": [
+        "同一ファイル編集の衝突可能性を検知する",
+        "衝突しそうな場合は編集を実行しない",
+        "親へ確認すべき内容と推奨対応を報告する",
+        "触ったファイルと触らなかったファイルを明確にする"
+      ]
+    },
+    {
+      "id": "executor-main-extra-confusion-guardrail",
+      "prompt": "子用 skill を使用してください。workspace: /agent_work/workspaces/active/2026-04-24-sample/。plan: /agent_work/workspaces/active/2026-04-24-sample/plan.md。対象 Todo: T9。task type: implementation。extra task types: verification。許可された成果物は src/app.py の更新だけです。変更後の確認観点は添えてよいですが、task type を勝手に verification 主体へ切り替えたり、extra task types や artifact category を根拠に許可外ファイルへ広げたりしないでください。",
+      "expected_output": "implementation を主軸に src/app.py だけを扱い、verification は補助観点として添える。主 task type を勝手に切り替えず、extra task types や artifact category を理由に許可範囲を広げない。",
+      "files": [],
+      "assertions": [
+        "主 task type を進め方と停止判断の主軸にする",
+        "extra task types を補助観点に留める",
+        "近接 task-type confusion があっても task type を勝手に切り替えない",
+        "extra task types や artifact category を根拠に許可外ファイルや追加成果物へ広げない"
+      ]
+    },
+    {
+      "id": "executor-stop-trigger-to-common-packet",
+      "prompt": "子用 skill を使用してください。workspace: /agent_work/workspaces/active/2026-04-24-sample/。plan: /agent_work/workspaces/active/2026-04-24-sample/plan.md。対象 Todo: T11。task type: verification。extra task types: implementation。バグ再現確認とログ採取だけが許可されています。確認の途中で、原因切り分けには src/app.py の修正が必要だと分かりました。修正へは進まず、task-specific な stop trigger に当たった結果を共通報告 packet へつないで返してください。",
+      "expected_output": "verification の stop trigger に当たったら implementation へ越境せず、partial または blocked の理由、不足情報、再開条件、未検証範囲を共通 packet で返す。",
+      "files": [],
+      "assertions": [
+        "task-specific stop trigger に当たったら勝手に実装へ進まない",
+        "partial または blocked の理由と不足情報を報告する",
+        "再開条件と未検証範囲を含める",
+        "extra task types を根拠に許可範囲を広げない"
+      ]
+    }
+  ]
+}

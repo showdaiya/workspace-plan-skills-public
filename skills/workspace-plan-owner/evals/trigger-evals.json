@@ -1,0 +1,50 @@
+[
+  {
+    "query": "前回の続きで、/agent_work/workspaces/archive/2026-04-10-report/ を参照しながら新しい active workspace を作って plan.md から再開したいです。子にも一部調査を任せたいです。",
+    "should_trigger": true
+  },
+  {
+    "query": "この実装、調査・設計・テスト観点の整理までありそうなので、workspace と plan.md を作って Todo 分解して進めてください。必要ならサブエージェントへ短く委任して。",
+    "should_trigger": true
+  },
+  {
+    "query": "複数日にまたがる作業になりそうです。必要なら memory-ops に従って Memory Context を確認し、今後引き継げる plan を作ってください。",
+    "should_trigger": true
+  },
+  {
+    "query": "active の plan.md を読んで、blocked になっている Todo を整理し、次に子へ渡す委任入力も作ってください。",
+    "should_trigger": true
+  },
+  {
+    "query": "OpenCode の workspaces 配下で、親として 3 つの Todo を管理しながら子の報告を統合してください。",
+    "should_trigger": true
+  },
+  {
+    "query": "このバックログ作業を今日から着手したいので、backlog から active に移して plan の最初の Todo を始める準備をしてください。",
+    "should_trigger": true
+  },
+  {
+    "query": "小さな試用タスクの前に、workspace-plan の親用 skill が効く形で足場を作りたいです。",
+    "should_trigger": true
+  },
+  {
+    "query": "子エージェントから返ってきた報告を確認して、plan.md の Todo 状態と実行ログへ統合してください。",
+    "should_trigger": true
+  },
+  {
+    "query": "T2 だけ実行して、plan.md は更新せず親へ報告してください。workspace は /agent_work/workspaces/active/sample です。",
+    "should_trigger": false
+  },
+  {
+    "query": "memory に残しておきたい方針があります。既存 topic か新規 topic か判断して保存してください。",
+    "should_trigger": false
+  },
+  {
+    "query": "今日やる個人タスクを inbox から today に移して、終わったものを done に入れてください。",
+    "should_trigger": false
+  },
+  {
+    "query": "この bash コマンド `git status --short` の意味を分解して説明してください。",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "skill_name": "workspace-plan-owner",
+  "evals": [
+    {
+      "id": "owner-memory-context-plan",
+      "prompt": "OpenCode の workspace 起点で、既存の設計整理作業を続けたいです。過去に決めた方針やユーザー嗜好が影響しそうなので、必要なら memory を見て plan.md を作ってください。子へは後で一部委任する予定です。",
+      "expected_output": "親として workspace と plan.md を用意し、memory 参照が必要な場合は memory-ops skill の手順に従い、今回影響する制約・方針・注意点だけを Memory Context として plan に要約する。子への委任は短い入力にし、memory topic は更新しない。",
+      "files": [],
+      "assertions": [
+        "memory 参照が必要な場合は memory-ops skill の手順に従う方針になっている",
+        "plan.md に Memory Context セクションまたは同等の要約が含まれる",
+        "Memory Context に memory 本文全文を貼らない",
+        "memory topic の作成・更新を行わない",
+        "子への委任入力は対象 Todo、完了条件、成果物、禁止事項、報告形式中心で短い"
+      ]
+    },
+    {
+      "id": "owner-memory-skip-small-task",
+      "prompt": "workspace を使うほどではないかもしれませんが、既存 plan の誤字を 1 箇所だけ直す小さな作業です。必要最小限で進めてください。",
+      "expected_output": "軽微・単発作業として workspace-plan-owner の重い運用や memory 確認を省略するか、省略理由を短く plan / 報告に残す。memory topic は読まない・更新しない。",
+      "files": [],
+      "assertions": [
+        "memory 確認を省略する場合、軽微な単発作業などの理由を短く示す",
+        "過去 memory を不要に広く調査しない",
+        "作業規模に対して過剰な workspace 成果物を作らない"
+      ]
+    },
+    {
+      "id": "owner-archive-restart",
+      "prompt": "/agent_work/workspaces/archive/2026-04-01-old-plan/ の続きとして、新しい検証作業を再開したいです。古い archive は参照だけにして、必要なら子へ調査を委任してください。",
+      "expected_output": "archive workspace を直接 active へ戻さず、新しい active workspace を作成し、参照元 archive を plan に明記する。archive は読み取り専用扱いにし、子への委任にも archive 参照ルールと必要な Memory Context を短く渡す。",
+      "files": [],
+      "assertions": [
+        "archive workspace を直接 active に戻さない",
+        "新規 active workspace で再開する",
+        "参照元 archive workspace を plan に明記する",
+        "子への委任で archive 側読み取り専用を指定する"
+      ]
+    },
+    {
+      "id": "owner-parallel-delegation-memory",
+      "prompt": "同じ workspace の T3 文書レビューと T4 テスト観点整理を、2 つの子に並行委任したいです。過去方針が少し関係しますが、子には長文を渡したくありません。",
+      "expected_output": "親が Memory Context を短く要約し、各子に必要な範囲だけ渡す。並行委任では編集可能ファイルを分け、同一ファイル同時編集を禁止し、子に memory 詳細調査の範囲拡大や plan.md 更新をさせない。",
+      "files": [],
+      "assertions": [
+        "子ごとに対象 Todo と編集可能ファイルが分かれている",
+        "同一ファイル同時編集禁止が明記されている",
+        "Memory Context は短い要約として渡される",
+        "子に memory 詳細調査を広げさせない",
+        "子に plan.md の直接更新をさせない"
+      ]
+    }
+  ]
+}
