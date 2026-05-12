@@ -95,10 +95,10 @@
 子用 skill `workspace-plan-executor` を使用し、その共通ルールに従ってください。
 
 workspace:
-- /agent_work/workspaces/{backlog|active|archive}/YYYY-MM-DD-作業名/
+- {WORKSPACE_ROOT}/{backlog|active|archive}/YYYY-MM-DD-作業名/
 
 plan:
-- /agent_work/workspaces/{backlog|active|archive}/YYYY-MM-DD-作業名/plan.md
+- {WORKSPACE_ROOT}/{backlog|active|archive}/YYYY-MM-DD-作業名/plan.md
 
 対象 Todo:
 - Tn〜Tm

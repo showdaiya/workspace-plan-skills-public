@@ -2,7 +2,7 @@
 
 このテンプレートは、各 workspace 内の `plan.md` として保存します。
 
-workspace root は `/agent_work/workspaces/` です。workspace の状態は `backlog` / `active` / `archive` の親ディレクトリで表し、plan 本体名は常に `plan.md` とします。
+workspace root は `{WORKSPACE_ROOT}` です。workspace の状態は `backlog` / `active` / `archive` の親ディレクトリで表し、plan 本体名は常に `plan.md` とします。
 
 ## 基本情報
 - 計画ID:
@@ -21,8 +21,8 @@ workspace root は `/agent_work/workspaces/` です。workspace の状態は `ba
 - 停止条件:
 - 関係ファイル/場所:
 - 要件ファイル: requirements.md
-- workspace root: /agent_work/workspaces/
-- ワークスペース: /agent_work/workspaces/{backlog|active|archive}/YYYY-MM-DD-作業名/
+- workspace root: {WORKSPACE_ROOT}
+- ワークスペース: {WORKSPACE_ROOT}/{backlog|active|archive}/YYYY-MM-DD-作業名/
 - 参照元 archive workspace: 必要時のみ記載
 
 ## 全体の禁止事項
@@ -50,7 +50,7 @@ workspace root は `/agent_work/workspaces/` です。workspace の状態は `ba
 ## 引き継ぎと注意事項
 - 注意点:
 - 引き継ぎ内容:
-- 完了後の扱い: 完了・cancelled などで終了したら workspace ごと `/agent_work/workspaces/archive/` へ移す。再開時は archive を直接戻さず、新しい workspace を作り参照元を明記する。
+- 完了後の扱い: 完了・cancelled などで終了したら workspace ごと `{WORKSPACE_ROOT}/archive/` へ移す。再開時は archive を直接戻さず、新しい workspace を作り参照元を明記する。
 - blocked / 待機時の扱い: blocked ディレクトリは作らない。短期 blocked は active に残し、長期待ちは親判断で backlog、終了扱いは archive に移す。
 - 環境特有のこと:
 

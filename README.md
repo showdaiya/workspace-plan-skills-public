@@ -1,6 +1,6 @@
 # workspace-plan skills public
 
-OpenCode の workspace / plan 運用向け skill と、対応する workspace テンプレートをまとめた公開用リポジトリです。
+workspace / plan 運用向け skill と、対応する workspace テンプレートをまとめた公開用リポジトリです。
 
 ## 含まれるもの
 
@@ -27,16 +27,16 @@ workspaces/
 
 ## 使い方
 
-このリポジトリの template は、そのまま `/agent_work/workspaces/_template/` へ配置して使う想定です。
+このリポジトリの template は、そのまま `{WORKSPACE_ROOT}/_template/` へ配置して使う想定です。
 
 例:
 
 ```text
 /agent_work/.opencode/skills/workspace-plan-owner/
 /agent_work/.opencode/skills/workspace-plan-executor/
-/agent_work/workspaces/_template/README.md
-/agent_work/workspaces/_template/plan-template.md
-/agent_work/workspaces/_template/requirements-template.md
+{WORKSPACE_ROOT}/_template/README.md
+{WORKSPACE_ROOT}/_template/plan-template.md
+{WORKSPACE_ROOT}/_template/requirements-template.md
 ```
 
 `workspace-plan-owner` は新しい workspace と `plan.md` / `requirements.md` を作成・更新する owner 側の運用を扱います。
@@ -44,5 +44,11 @@ workspaces/
 
 ## 補足
 
-この repository は、OpenCode 上で使っている運用を外部共有しやすい形に切り出したものです。
+この repository は、workspace / plan 運用を外部共有しやすい形に切り出したものです。
 環境依存のパスや運用ルールがあるため、利用時は自分の環境に合わせて調整してください。
+
+### `{WORKSPACE_ROOT}` について
+
+`{WORKSPACE_ROOT}` は、利用時に自分の環境の workspace root に置き換えて使ってください。末尾スラッシュなしを推奨します。
+
+また、`/agent_work/.opencode/skills/...` など skills の配置パスも、自分の環境に合わせて読み替えてください。
